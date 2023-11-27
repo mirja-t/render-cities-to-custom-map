@@ -1,0 +1,10 @@
+{
+    "include": ["src/**/*"],
+    "compilerOptions": {
+        "allowJs": false,
+        "target": "esnext",
+        "module": "commonjs",
+        "jsx": "react",
+        "types": []
+    }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "render-cities-to-custom-map",
+  "version": "1.0.0",
+  "type": "module",
+  "source": "src/index.tsx",
+  "main": "dist/index.tsx",
+  "module": "dist/index.module.js",
+  "types": "dist/index.d.ts",
+  "unpkg": "dist/index.umd.js",
+  "scripts": {
+    "build": "microbundle",
+    "build:lib": "microbundle --jsx React.createElement --jsxFragment React.Fragment --jsxImportSource react",
+    "dev": "microbundle watch"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.38",
+    "microbundle": "^0.15.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mirja-t/render-cities-to-custom-map.git"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
