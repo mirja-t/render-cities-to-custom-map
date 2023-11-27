@@ -9,10 +9,10 @@ export const Cities = ({cities, zoom, baseFontSize, color='#999'}: {cities: Rend
 						{inhabitants >= 500000 ? 
 							<rect 
                                 fill={color}
-								x={x-(4 / zoom)} 
-								y={y-(4 / zoom)} 
-								width={8 / zoom} 
-								height={8 / zoom} /> : 
+								x={x-(baseFontSize * 0.2 / zoom)} 
+								y={y-(baseFontSize * 0.2 / zoom)} 
+								width={baseFontSize * 0.4 / zoom} 
+								height={baseFontSize * 0.4 / zoom} /> : 
 						inhabitants >= 100000 ? <circle fill={color} cx={x} cy={y} r={3 / zoom} /> : 
 						<circle fill="transparent" stroke={color} cx={x} cy={y} r={2 / zoom} />}
 						<text 
@@ -23,8 +23,8 @@ export const Cities = ({cities, zoom, baseFontSize, color='#999'}: {cities: Rend
 								(baseFontSize * 0.8) / zoom,
 								fontWeight: (inhabitants >= 500000) ? 'bold' : 'normal'
 							}} 
-							x={x + (inhabitants >= 500000 ? 12 : 8) / zoom}
-							y={y + (4 / zoom)}
+							x={x + baseFontSize * 0.5 / zoom}
+							y={y + (baseFontSize * 0.25 / zoom)}
 							>
 								{name}
 						</text>
