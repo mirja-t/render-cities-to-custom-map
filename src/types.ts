@@ -32,8 +32,8 @@ interface MapData {
 
 interface SvgMapProps {
 	zoom?: number;
-	mapComponent?: React.ReactElement;
-	mapdata?: MapData;
+	mapComponent: (zoom?: number) => React.ReactElement;
+	mapdata: MapData;
 	baseFontSize?: number;
 	color?: string;
 	scale?: number;

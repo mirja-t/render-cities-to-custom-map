@@ -44,7 +44,7 @@ export function SvgMap({
 				<Cities 
 					cities={cities}
 					zoom={zoom} 
-					baseFontSize={baseFontSize} 
+					baseFontSize={(width / window.innerWidth) * baseFontSize} 
 					color={color}/>
 			</svg>
 			<div style={{
@@ -54,6 +54,6 @@ export function SvgMap({
 				zIndex: 1,
 				width: '100%',
 				height: '100%',
-			}}>{ mapComponent }</div>
+			}}>{ mapComponent(zoom) }</div>
 		</div>)
 }

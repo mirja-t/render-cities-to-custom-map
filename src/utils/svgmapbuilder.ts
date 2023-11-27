@@ -1,4 +1,11 @@
-import { City, Bounds } from "../types";
+import { City } from "../types";
+
+interface Bounds {
+    west: number,
+    south: number,
+    east: number,
+    north: number
+}
 
 export class SvgMapBuilder {
     west: number;
@@ -77,30 +84,37 @@ export class MapBuilder extends SvgMapBuilder {
     constructor(bounds: Bounds, scale = 100) {
         super(bounds, scale);
     }
-    _sortByInhabitants(cities: City[]) {
+    sortByInhabitants(cities: City[]) {
         return cities.sort((a, b) => Math.sign(b.inhabitants - a.inhabitants))
     }
     getCities(cities: City[], baseFontSize: number) {
         const positionMap = new Map();
         const currentCities: RenderCities[] = [];
-        const sortedCities = this._sortByInhabitants(cities)
+        const sortedCities = this.sortByInhabitants(cities)
         sortedCities.forEach((city) => {
             const [x, y] = this.getMapPosition(city.lon, city.lat);
             const elWidth = baseFontSize * 0.6 * city.name.length + 30;
-            const row = Math.floor(y / (baseFontSize*2))
-            const mapKey = row - (row % 2)
-            const rowIsAvailable = !positionMap.has(mapKey)
+            const row = Math.floor(y / baseFontSize)
+            const rowIsAvailable = !positionMap.has(row) && !positionMap.has(row-1) && !positionMap.has(row+1)
+            const isColumnAvailable = (currentColumns: number[][], x: number, width: number) => {
+                return currentColumns.every(([start, end]: number[]) => x + width < start || x > end)
+            }
+            
             let isAvailable = false;
             
             if(rowIsAvailable) {
-                positionMap.set(mapKey, [[Math.floor(x), Math.floor(x + elWidth)]])
+                positionMap.set(row, [[Math.floor(x), Math.floor(x + elWidth)]])
                 isAvailable = true;
             }
             else {
-                const currentRow = positionMap.get(mapKey)
-                const columnIsAvailable = currentRow.every(([start, end]: number[]) => x + elWidth < start || x > end)
+                const currentRow = positionMap.get(row) || [];
+                const prevRow = positionMap.get(row-1) || [];
+                const nextRow = positionMap.get(row+1) || [];
+                const currentColumns = [...currentRow, ...prevRow, ...nextRow]
+                const columnIsAvailable = isColumnAvailable(currentColumns, x, elWidth)
+
                 if(columnIsAvailable) {
-                    positionMap.set(mapKey, [...currentRow, [Math.floor(x), Math.floor(x + elWidth)]])
+                    positionMap.set(row, [...currentRow, [Math.floor(x), Math.floor(x + elWidth)]])
                     isAvailable = true;
                 }
             }
