@@ -14,7 +14,7 @@ export const Cities = ({cities, zoom, baseFontSize, color='#999'}: {cities: Rend
 								width={baseFontSize * 0.4 / zoom} 
 								height={baseFontSize * 0.4 / zoom} /> : 
 						inhabitants >= 100000 ? <circle fill={color} cx={x} cy={y} r={3 / zoom} /> : 
-						<circle fill="transparent" stroke={color} cx={x} cy={y} r={2 / zoom} />}
+						<circle fill="transparent" stroke={color} strokeWidth={1 / zoom} cx={x} cy={y} r={2 / zoom} />}
 						<text 
 							style={{
                                 fill: color,

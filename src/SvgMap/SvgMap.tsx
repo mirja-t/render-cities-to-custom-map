@@ -19,6 +19,7 @@ export function SvgMap({
 	color = "black"
 }: SvgMapProps) {
 
+	zoom = Math.max(0.1, zoom);
 	const map = React.useMemo(() => new MapBuilder(mapdata.bounds, 100), []);
 	const { width, height } = map.size;
 	const [cities, setCities] = React.useState<RenderCities[]>(map.getCities(mapdata.cities, baseFontSize));
