@@ -3,7 +3,7 @@
 
 This component displays a custom svg map and renders a given list of cities to the map by their latitude and longitude props. As many cities as possible, sorted by size, are rendered to the map as long as their names don't overlap. If zoomed in, more cities are displayed on the map.
 
-[Demo](render-cities-to-custom-map.mirja-t.de/)
+[Demo](http://render-cities-to-custom-map.mirja-t.de)
 
 ## How to use
 
