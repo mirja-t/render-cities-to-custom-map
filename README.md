@@ -36,7 +36,7 @@ function App() {
 }
 ```
 
-#### data structure
+#### Data structure
 ```
 import { MapData } from "render-cities-to-custom-map";
 
@@ -68,7 +68,7 @@ export const mapdata: MapData = {
 }
 ```
 
-#### optional:
+#### Optional:
 
 + zoom: number, defaults to 1
 + baseFontSize: number, font size of largest cities, defaults to 14 
