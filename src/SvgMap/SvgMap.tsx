@@ -1,7 +1,7 @@
-import * as React from 'react';
 import { MapBuilder, RenderCities } from '../utils/svgmapbuilder';
 import { Cities } from './Cities';
 import { SvgMapProps } from '../types';
+import { useEffect, useMemo, useState } from 'react';
 
 export function SvgMap({
 	zoom = 1,
@@ -15,17 +15,19 @@ export function SvgMap({
 			south: 0 },
 		cities: []
 	},
+	fontFamily = "Arial, sans-serif",
 	baseFontSize = 14,
 	color = "black"
 }: SvgMapProps) {
-
+	
 	zoom = Math.max(0.1, zoom);
-	const map = React.useMemo(() => new MapBuilder(mapdata.bounds, 100), []);
+	const map = useMemo(() => new MapBuilder(mapdata.bounds, 100), []);
 	const { width, height } = map.size;
-	const [cities, setCities] = React.useState<RenderCities[]>(map.getCities(mapdata.cities, baseFontSize));
+	const fontSize = (width / window.innerWidth) * (baseFontSize / zoom)
+	const [cities, setCities] = useState<RenderCities[]>(map.getCities(mapdata.cities, fontSize));
 
-	React.useEffect(() => {
-		setCities(map.getCities(mapdata.cities, baseFontSize / zoom));
+	useEffect(() => {
+		setCities(map.getCities(mapdata.cities, fontSize));
 	}, [zoom]);
 	
 	return (
@@ -45,7 +47,8 @@ export function SvgMap({
 				<Cities 
 					cities={cities}
 					zoom={zoom} 
-					baseFontSize={(width / window.innerWidth) * baseFontSize} 
+					fontSize={fontSize} 
+					fontFamily={fontFamily}
 					color={color}/>
 			</svg>
 			<div style={{

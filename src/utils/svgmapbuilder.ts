@@ -81,6 +81,7 @@ export interface RenderCities {
 }
 
 export class MapBuilder extends SvgMapBuilder {
+
     constructor(bounds: Bounds, scale = 100) {
         super(bounds, scale);
     }
@@ -94,7 +95,7 @@ export class MapBuilder extends SvgMapBuilder {
         sortedCities.forEach((city) => {
             const [x, y] = this.getMapPosition(city.lon, city.lat);
             const elWidth = baseFontSize * 0.6 * city.name.length + 30;
-            const row = Math.floor(y / baseFontSize)
+            const row = Math.floor(y / baseFontSize);
             const rowIsAvailable = !positionMap.has(row) && !positionMap.has(row-1) && !positionMap.has(row+1)
             const isColumnAvailable = (currentColumns: number[][], x: number, width: number) => {
                 return currentColumns.every(([start, end]: number[]) => x + width < start || x > end)

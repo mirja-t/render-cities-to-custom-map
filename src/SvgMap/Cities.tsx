@@ -1,7 +1,6 @@
-import * as React from 'react';
 import { RenderCities } from "../utils/svgmapbuilder"
 
-export const Cities = ({cities, zoom, baseFontSize, color='#999'}: {cities: RenderCities[], zoom: number, baseFontSize: number, color?: string}) => {
+export const Cities = ({cities, zoom, fontSize, fontFamily, color}: {cities: RenderCities[], zoom: number, fontSize: number, fontFamily: string, color: string}) => {
     return (
         <g id="cities">
                 {cities.map(({id, x, y, name, inhabitants}) => (
@@ -9,22 +8,22 @@ export const Cities = ({cities, zoom, baseFontSize, color='#999'}: {cities: Rend
 						{inhabitants >= 500000 ? 
 							<rect 
                                 fill={color}
-								x={x-(baseFontSize * 0.2 / zoom)} 
-								y={y-(baseFontSize * 0.2 / zoom)} 
-								width={baseFontSize * 0.4 / zoom} 
-								height={baseFontSize * 0.4 / zoom} /> : 
+								x={x-(fontSize * 0.2)} 
+								y={y-(fontSize * 0.2)} 
+								width={fontSize * 0.4} 
+								height={fontSize * 0.4} /> : 
 						inhabitants >= 100000 ? <circle fill={color} cx={x} cy={y} r={3 / zoom} /> : 
 						<circle fill="transparent" stroke={color} strokeWidth={1 / zoom} cx={x} cy={y} r={2 / zoom} />}
 						<text 
 							style={{
                                 fill: color,
-								fontFamily: 'Arial, sans-serif',
-								fontSize: (inhabitants >= 500000) ? baseFontSize / zoom : 
-								(baseFontSize * 0.8) / zoom,
+								fontFamily: fontFamily,
+								fontSize: (inhabitants >= 500000) ? fontSize : 
+								fontSize * 0.8,
 								fontWeight: (inhabitants >= 500000) ? 'bold' : 'normal'
 							}} 
-							x={x + baseFontSize * 0.5 / zoom}
-							y={y + (baseFontSize * 0.25 / zoom)}
+							x={x + fontSize * 0.5}
+							y={y + (fontSize * 0.25)}
 							>
 								{name}
 						</text>

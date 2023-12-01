@@ -1,9 +1,21 @@
 ### React Component
+
 # Render cities to custom map 
 
 This component displays a custom svg map and renders a given list of cities to the map by their latitude and longitude props. As many cities as possible, sorted by size, are rendered to the map as long as their names don't overlap. If zoomed in, more cities are displayed on the map.
 
-[Demo](http://render-cities-to-custom-map.mirja-t.de)
+## Demo
+
+[render-cities-to-custom-map.mirja-t.de](http://render-cities-to-custom-map.mirja-t.de)
+
+
+## Installation
+
+#### As npm package
+
+```sh
+npm i render-cities-to-custom-map
+```
 
 ## How to use
 
@@ -60,7 +72,8 @@ export const mapdata: MapData = {
 
 + zoom: number, defaults to 1
 + baseFontSize: number, font size of largest cities, defaults to 14 
-+ color: string, color of city names and related dots, defaults to black
++ color: string, color of city names and related dots, defaults to "black"
++ fontFamily: string, defaults to "Arial, sans-serif"
 
 ```
 import SvgMapCities from "render-cities-to-custom-map"
