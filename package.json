@@ -1,6 +1,6 @@
 {
   "name": "render-cities-to-custom-map",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "source": "src/index.tsx",
   "main": "dist/index.tsx",
