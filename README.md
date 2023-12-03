@@ -96,3 +96,5 @@ function App() {
   </>)
 }
 ```
+
+License: [MIT](./LICENSE.md)
